@@ -68,6 +68,42 @@ const homePath = translatePath('/');
         }
       })();
     </script>
+
+    <!-- Language Redirect Script -->
+    <script is:inline define:vars={{ currentLang: lang }}>
+      (function () {
+        try {
+          const savedLang = localStorage.getItem('preferredLang');
+          let targetLang = null;
+          if (savedLang) {
+            if (savedLang !== currentLang) {
+              targetLang = savedLang;
+            }
+          } else {
+            const browserLang =
+              navigator.language || navigator.userLanguage || '';
+            const detectedLang = browserLang.toLowerCase().startsWith('en')
+              ? 'en'
+              : 'es';
+            if (detectedLang !== currentLang) {
+              targetLang = detectedLang;
+            }
+          }
+          if (targetLang) {
+            const currentPath = window.location.pathname;
+            let targetPath = currentPath;
+            if (targetLang === 'en') {
+              targetPath = currentPath === '/' ? '/en' : '/en' + currentPath;
+            } else {
+              targetPath = currentPath.replace(/^\/en(?=\/|$)/, '') || '/';
+            }
+            window.location.replace(targetPath + window.location.hash);
+          }
+        } catch (error) {
+          void error;
+        }
+      })();
+    </script>
   </head>
   <body
     class="bg-surface-50 text-surface-900 dark:bg-surface-950 dark:text-surface-100 flex min-h-full flex-col font-sans antialiased transition-colors duration-300"

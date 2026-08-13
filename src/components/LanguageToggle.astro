@@ -23,6 +23,7 @@ if (url.hash) {
 
 <a
   href={targetPath}
+  onclick={`try { localStorage.setItem('preferredLang', '${targetLang}'); } catch(e) {}`}
   class="border-surface-200/80 bg-surface-100/80 text-surface-700 hover:border-brand-400 hover:bg-brand-50 hover:text-brand-600 focus-visible:ring-brand-500 dark:border-surface-700/80 dark:bg-surface-800/80 dark:text-surface-300 dark:hover:border-brand-500 dark:hover:bg-brand-950/40 dark:hover:text-brand-400 inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition-all focus:outline-none focus-visible:ring-2"
   aria-label={lang === 'en'
     ? `Switch language to ${languages[targetLang]}`
