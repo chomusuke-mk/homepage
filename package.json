@@ -37,10 +37,5 @@
     "puppeteer-core": "^25.6.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.67.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "puppeteer"
-    ]
   }
 }
