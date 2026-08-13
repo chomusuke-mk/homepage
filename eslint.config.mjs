@@ -3,7 +3,8 @@ import tseslint from 'typescript-eslint';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import globals from 'globals';
 
-export default tseslint.config([
+// @ts-ignore: Deprecated signature warning from tseslint 8+
+export default tseslint.config(
   {
     ignores: [
       'dist/',
@@ -34,5 +35,5 @@ export default tseslint.config([
       ],
       '@typescript-eslint/triple-slash-reference': 'off',
     },
-  },
-]);
+  }
+);

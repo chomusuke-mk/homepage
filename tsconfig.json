@@ -9,5 +9,7 @@
       "@content/*": ["./src/content/*"],
       "@i18n/*": ["./src/i18n/*"]
     }
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "temp", "tests"]
 }

@@ -6,7 +6,7 @@ const installInstructionSchema = z.object({
   platform: z.string(),
   label: z.string(),
   label_en: z.string().optional(),
-  url: z.string().url(),
+  url: z.string().regex(/^https?:\/\//, 'Invalid URL'),
   icon: z.string().optional(),
 });
 
@@ -18,9 +18,12 @@ const projectsCollection = defineCollection({
     description: z.string(),
     description_en: z.string().optional(),
     techStack: z.array(z.string()),
-    githubLink: z.string().url(),
-    liveLink: z.string().url(),
-    downloadLink: z.string().url().optional(),
+    githubLink: z.string().regex(/^https?:\/\//, 'Invalid URL'),
+    liveLink: z.string().regex(/^https?:\/\//, 'Invalid URL'),
+    downloadLink: z
+      .string()
+      .regex(/^https?:\/\//, 'Invalid URL')
+      .optional(),
     featured: z.boolean().default(false),
     order: z.number().default(0),
     bentoSpan: z.string().optional(),
