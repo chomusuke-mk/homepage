@@ -1,4 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'zod';
+import { glob } from 'astro/loaders';
 
 const installInstructionSchema = z.object({
   platform: z.string(),
@@ -9,7 +11,7 @@ const installInstructionSchema = z.object({
 });
 
 const projectsCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     title_en: z.string().optional(),

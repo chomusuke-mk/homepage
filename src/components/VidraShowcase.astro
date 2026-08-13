@@ -15,16 +15,16 @@ sudo apt update && sudo apt install vidra`;
 ---
 
 <article
-  class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500/20 via-purple-500/20 to-indigo-500/20 p-0.5 shadow-2xl shadow-brand-500/10 backdrop-blur-xl"
+  class="from-brand-500/20 shadow-brand-500/10 relative overflow-hidden rounded-3xl bg-gradient-to-br via-purple-500/20 to-indigo-500/20 p-0.5 shadow-2xl backdrop-blur-xl"
 >
   <!-- Inner Card Canvas -->
   <div
-    class="rounded-[23px] bg-surface-900/90 p-6 text-white backdrop-blur-2xl dark:bg-surface-950/95 sm:p-8 lg:p-10"
+    class="bg-surface-900/90 dark:bg-surface-950/95 rounded-[23px] p-6 text-white backdrop-blur-2xl sm:p-8 lg:p-10"
   >
     <!-- Top Bar: Badge & Live Status -->
     <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
       <div
-        class="inline-flex items-center gap-2 rounded-full border border-brand-400/40 bg-brand-500/20 px-3.5 py-1.5 text-xs font-bold text-brand-300 backdrop-blur-md"
+        class="border-brand-400/40 bg-brand-500/20 text-brand-300 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-bold backdrop-blur-md"
       >
         <div class="relative flex h-2 w-2" aria-hidden="true">
           <div
@@ -37,17 +37,17 @@ sudo apt update && sudo apt install vidra`;
         <span>✨ {t('vidra.flagshipBadge')}</span>
       </div>
 
-      <div class="flex items-center gap-2 text-xs font-medium text-surface-400">
+      <div class="text-surface-400 flex items-center gap-2 text-xs font-medium">
         <span
-          class="rounded-md border border-surface-700 bg-surface-800/80 px-2.5 py-1"
+          class="border-surface-700 bg-surface-800/80 rounded-md border px-2.5 py-1"
           >OTA Updates</span
         >
         <span
-          class="rounded-md border border-surface-700 bg-surface-800/80 px-2.5 py-1"
+          class="border-surface-700 bg-surface-800/80 rounded-md border px-2.5 py-1"
           >0 Telemetry</span
         >
         <span
-          class="rounded-md border border-surface-700 bg-surface-800/80 px-2.5 py-1"
+          class="border-surface-700 bg-surface-800/80 rounded-md border px-2.5 py-1"
           >SHA2 &amp; GPG Verified</span
         >
       </div>
@@ -61,10 +61,10 @@ sudo apt update && sudo apt install vidra`;
         >
           Vidra
         </h2>
-        <p class="mb-4 text-lg font-medium text-brand-300">
+        <p class="text-brand-300 mb-4 text-lg font-medium">
           {t('vidra.tagline')}
         </p>
-        <p class="mb-6 leading-relaxed text-surface-300">
+        <p class="text-surface-300 mb-6 leading-relaxed">
           {t('vidra.description')}
         </p>
 
@@ -92,7 +92,7 @@ sudo apt update && sudo apt install vidra`;
             href="https://github.com/chomusuke-mk/vidra/releases/latest"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all hover:scale-105 hover:shadow-xl hover:shadow-brand-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+            class="from-brand-500 shadow-brand-500/25 hover:shadow-brand-500/40 focus-visible:ring-brand-400 inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus-visible:ring-2"
           >
             <svg
               class="h-4 w-4"
@@ -114,7 +114,7 @@ sudo apt update && sudo apt install vidra`;
             href="https://github.com/chomusuke-mk/vidra"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-xl border border-surface-700 bg-surface-800/80 px-5 py-3 text-sm font-semibold text-surface-200 transition-all hover:border-surface-600 hover:bg-surface-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+            class="border-surface-700 bg-surface-800/80 text-surface-200 hover:border-surface-600 hover:bg-surface-700 focus-visible:ring-brand-400 inline-flex items-center gap-2 rounded-xl border px-5 py-3 text-sm font-semibold transition-all focus:outline-none focus-visible:ring-2"
           >
             <svg
               class="h-4 w-4"
@@ -135,17 +135,17 @@ sudo apt update && sudo apt install vidra`;
       <!-- Platform Badges Matrix -->
       <div class="lg:col-span-5">
         <div
-          class="rounded-2xl border border-surface-700/60 bg-surface-950/60 p-5 shadow-inner"
+          class="border-surface-700/60 bg-surface-950/60 rounded-2xl border p-5 shadow-inner"
         >
           <h3
-            class="mb-4 text-xs font-semibold uppercase tracking-wider text-surface-400"
+            class="text-surface-400 mb-4 text-xs font-semibold tracking-wider uppercase"
           >
             {t('vidra.platforms.title')}
           </h3>
           <div class="grid grid-cols-2 gap-3">
             <!-- Windows -->
             <div
-              class="flex items-center gap-3 rounded-xl border border-surface-800 bg-surface-900/80 p-3 transition-colors hover:border-brand-500/50"
+              class="border-surface-800 bg-surface-900/80 hover:border-brand-500/50 flex items-center gap-3 rounded-xl border p-3 transition-colors"
             >
               <div
                 class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400"
@@ -160,7 +160,7 @@ sudo apt update && sudo apt install vidra`;
                 <span class="block text-sm font-semibold text-white"
                   >{t('vidra.platforms.windows')}</span
                 >
-                <span class="block text-[11px] text-surface-400"
+                <span class="text-surface-400 block text-[11px]"
                   >.exe &amp; Chocolatey</span
                 >
               </div>
@@ -168,7 +168,7 @@ sudo apt update && sudo apt install vidra`;
 
             <!-- Linux -->
             <div
-              class="flex items-center gap-3 rounded-xl border border-surface-800 bg-surface-900/80 p-3 transition-colors hover:border-brand-500/50"
+              class="border-surface-800 bg-surface-900/80 hover:border-brand-500/50 flex items-center gap-3 rounded-xl border p-3 transition-colors"
             >
               <div
                 class="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400"
@@ -183,7 +183,7 @@ sudo apt update && sudo apt install vidra`;
                 <span class="block text-sm font-semibold text-white"
                   >{t('vidra.platforms.linux')}</span
                 >
-                <span class="block text-[11px] text-surface-400"
+                <span class="text-surface-400 block text-[11px]"
                   >AppImage, APT &amp; Snap</span
                 >
               </div>
@@ -191,7 +191,7 @@ sudo apt update && sudo apt install vidra`;
 
             <!-- Android -->
             <div
-              class="flex items-center gap-3 rounded-xl border border-surface-800 bg-surface-900/80 p-3 transition-colors hover:border-brand-500/50"
+              class="border-surface-800 bg-surface-900/80 hover:border-brand-500/50 flex items-center gap-3 rounded-xl border p-3 transition-colors"
             >
               <div
                 class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400"
@@ -206,7 +206,7 @@ sudo apt update && sudo apt install vidra`;
                 <span class="block text-sm font-semibold text-white"
                   >{t('vidra.platforms.android')}</span
                 >
-                <span class="block text-[11px] text-surface-400"
+                <span class="text-surface-400 block text-[11px]"
                   >APK &amp; F-Droid</span
                 >
               </div>
@@ -214,7 +214,7 @@ sudo apt update && sudo apt install vidra`;
 
             <!-- macOS -->
             <div
-              class="flex items-center gap-3 rounded-xl border border-surface-800/80 bg-surface-900/40 p-3 opacity-60"
+              class="border-surface-800/80 bg-surface-900/40 flex items-center gap-3 rounded-xl border p-3 opacity-60"
             >
               <div
                 class="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-500/20 text-purple-300"
@@ -241,42 +241,42 @@ sudo apt update && sudo apt install vidra`;
     </div>
 
     <!-- Architectural Multi-Tier Blueprint -->
-    <div class="mt-10 border-t border-surface-800/80 pt-8">
+    <div class="border-surface-800/80 mt-10 border-t pt-8">
       <h3
-        class="mb-6 text-center text-sm font-bold uppercase tracking-wider text-surface-300 sm:text-base"
+        class="text-surface-300 mb-6 text-center text-sm font-bold tracking-wider uppercase sm:text-base"
       >
         ⚙️ {t('vidra.arch.title')}
       </h3>
       <div class="grid gap-4 md:grid-cols-3">
         <!-- Tier 1: UI -->
         <div
-          class="rounded-2xl border border-brand-500/30 bg-gradient-to-b from-brand-950/40 to-surface-900/60 p-5 backdrop-blur-md"
+          class="border-brand-500/30 from-brand-950/40 to-surface-900/60 rounded-2xl border bg-gradient-to-b p-5 backdrop-blur-md"
         >
           <div class="mb-2 flex items-center justify-between">
             <span
-              class="text-xs font-bold uppercase tracking-wider text-brand-400"
+              class="text-brand-400 text-xs font-bold tracking-wider uppercase"
               >Tier 1 &middot; UI Layer</span
             >
             <span
-              class="rounded bg-brand-500/20 px-2 py-0.5 text-[10px] font-semibold text-brand-300"
+              class="bg-brand-500/20 text-brand-300 rounded px-2 py-0.5 text-[10px] font-semibold"
               >Flutter</span
             >
           </div>
           <h4 class="text-base font-bold text-white">
             {t('vidra.arch.flutter')}
           </h4>
-          <p class="mt-1 text-xs leading-relaxed text-surface-300">
+          <p class="text-surface-300 mt-1 text-xs leading-relaxed">
             {t('vidra.arch.flutterDesc')}
           </p>
         </div>
 
         <!-- Tier 2: Backend -->
         <div
-          class="rounded-2xl border border-purple-500/30 bg-gradient-to-b from-purple-950/40 to-surface-900/60 p-5 backdrop-blur-md"
+          class="to-surface-900/60 rounded-2xl border border-purple-500/30 bg-gradient-to-b from-purple-950/40 p-5 backdrop-blur-md"
         >
           <div class="mb-2 flex items-center justify-between">
             <span
-              class="text-xs font-bold uppercase tracking-wider text-purple-400"
+              class="text-xs font-bold tracking-wider text-purple-400 uppercase"
               >Tier 2 &middot; Engine Core</span
             >
             <span
@@ -287,18 +287,18 @@ sudo apt update && sudo apt install vidra`;
           <h4 class="text-base font-bold text-white">
             {t('vidra.arch.backend')}
           </h4>
-          <p class="mt-1 text-xs leading-relaxed text-surface-300">
+          <p class="text-surface-300 mt-1 text-xs leading-relaxed">
             {t('vidra.arch.backendDesc')}
           </p>
         </div>
 
         <!-- Tier 3: Toolchains -->
         <div
-          class="rounded-2xl border border-indigo-500/30 bg-gradient-to-b from-indigo-950/40 to-surface-900/60 p-5 backdrop-blur-md"
+          class="to-surface-900/60 rounded-2xl border border-indigo-500/30 bg-gradient-to-b from-indigo-950/40 p-5 backdrop-blur-md"
         >
           <div class="mb-2 flex items-center justify-between">
             <span
-              class="text-xs font-bold uppercase tracking-wider text-indigo-400"
+              class="text-xs font-bold tracking-wider text-indigo-400 uppercase"
               >Tier 3 &middot; Native Binaries</span
             >
             <span
@@ -309,7 +309,7 @@ sudo apt update && sudo apt install vidra`;
           <h4 class="text-base font-bold text-white">
             {t('vidra.arch.ytdlp')} + {t('vidra.arch.ffmpeg')}
           </h4>
-          <p class="mt-1 text-xs leading-relaxed text-surface-300">
+          <p class="text-surface-300 mt-1 text-xs leading-relaxed">
             {t('vidra.arch.ffmpegDesc')} &amp; {t('vidra.arch.quickjsDesc')}
           </p>
         </div>
@@ -318,11 +318,11 @@ sudo apt update && sudo apt install vidra`;
 
     <!-- Interactive APT Snippet Container -->
     <div
-      class="mt-8 rounded-2xl border border-surface-800/80 bg-surface-950/80 p-5"
+      class="border-surface-800/80 bg-surface-950/80 mt-8 rounded-2xl border p-5"
     >
       <div class="mb-3 flex items-center justify-between">
         <span
-          class="flex items-center gap-2 text-xs font-bold text-surface-300"
+          class="text-surface-300 flex items-center gap-2 text-xs font-bold"
         >
           <svg
             class="h-4 w-4 text-emerald-400"
@@ -342,7 +342,7 @@ sudo apt update && sudo apt install vidra`;
         <button
           id="copy-apt-btn"
           type="button"
-          class="inline-flex items-center gap-1.5 rounded-lg border border-surface-700 bg-surface-800 px-3 py-1 text-xs font-medium text-surface-200 transition-all hover:bg-surface-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-400"
+          class="border-surface-700 bg-surface-800 text-surface-200 hover:bg-surface-700 focus:ring-brand-400 inline-flex items-center gap-1.5 rounded-lg border px-3 py-1 text-xs font-medium transition-all hover:text-white focus:ring-2 focus:outline-none"
           data-copy={aptCommand}
           data-copied={t('vidra.aptSnippet.copied')}
           aria-label={lang === 'en'
@@ -366,7 +366,7 @@ sudo apt update && sudo apt install vidra`;
         </button>
       </div>
       <pre
-        class="overflow-x-auto rounded-xl bg-surface-900/90 p-4 font-mono text-xs leading-relaxed text-surface-200"><code><span class="text-surface-500">{lang === 'en' ? '# 1. Download security key' : '# 1. Descargar clave de seguridad'}</span>
+        class="bg-surface-900/90 text-surface-200 overflow-x-auto rounded-xl p-4 font-mono text-xs leading-relaxed"><code><span class="text-surface-500">{lang === 'en' ? '# 1. Download security key' : '# 1. Descargar clave de seguridad'}</span>
 <span class="text-emerald-400">wget</span> -qO- https://apt.chomusuke.dev/public.key | <span class="text-emerald-400">sudo</span> tee /etc/apt/keyrings/chomusuke.asc &gt; /dev/null
 
 <span class="text-surface-500">{lang === 'en' ? '# 2. Add repository' : '# 2. Agregar repositorio'}</span>

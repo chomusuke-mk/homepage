@@ -123,7 +123,9 @@ async function getStepMeasurements(page, targetSelector) {
     let el = null;
     try {
       el = document.querySelector(sel);
-    } catch (_) {}
+    } catch {
+      // Invalid selector
+    }
 
     if (!el) {
       return {

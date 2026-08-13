@@ -1,9 +1,0 @@
-dist/
-dist_backup/
-temp/
-*.backup
-*.tmp
-.astro/
-node_modules/
-.agents/
-tests/
