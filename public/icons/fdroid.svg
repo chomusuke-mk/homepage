@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <rect width="96" height="96" rx="18" fill="#1976D2"/>
+  <g transform="translate(14, 8)">
+    <!-- Antennae -->
+    <line x1="22" y1="18" x2="16" y2="6" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="46" y1="18" x2="52" y2="6" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="16" cy="5" r="3" fill="#fff"/>
+    <circle cx="52" cy="5" r="3" fill="#fff"/>
+    <!-- Head -->
+    <rect x="10" y="18" width="48" height="28" rx="8" fill="#fff"/>
+    <!-- Eyes -->
+    <circle cx="26" cy="32" r="4" fill="#1976D2"/>
+    <circle cx="42" cy="32" r="4" fill="#1976D2"/>
+    <!-- Body -->
+    <rect x="10" y="48" width="48" height="30" rx="6" fill="#fff"/>
+    <!-- Arms -->
+    <rect x="0" y="50" width="8" height="22" rx="4" fill="#fff"/>
+    <rect x="60" y="50" width="8" height="22" rx="4" fill="#fff"/>
+    <!-- Legs -->
+    <rect x="18" y="80" width="8" height="14" rx="4" fill="#fff"/>
+    <rect x="42" y="80" width="8" height="14" rx="4" fill="#fff"/>
+  </g>
+</svg>

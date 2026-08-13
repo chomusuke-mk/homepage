@@ -1,0 +1,571 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@components/BaseLayout.astro';
+import VidraShowcase from '@components/VidraShowcase.astro';
+import AboutMe from '@components/AboutMe.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import { useTranslations } from '@i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+);
+const otherProjects = sortedProjects.filter((p) => !p.data.featured);
+---
+
+<BaseLayout lang={lang}>
+  <!-- Hero Section -->
+  <section
+    class="relative overflow-hidden py-20 sm:py-28 lg:py-36"
+    aria-label={t('hero.badge')}
+  >
+    <!-- Background Ambient Glows -->
+    <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+      <div
+        class="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-brand-400/10 blur-3xl dark:bg-brand-500/10"
+      >
+      </div>
+      <div
+        class="absolute -right-40 top-20 h-96 w-96 rounded-full bg-purple-400/10 blur-3xl dark:bg-purple-500/10"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-brand-300/10 blur-3xl dark:bg-brand-600/10"
+      >
+      </div>
+    </div>
+
+    <div class="section-container">
+      <div
+        class="flex flex-col-reverse items-center gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16"
+      >
+        <!-- Left: Intro & Bio -->
+        <div class="max-w-2xl text-center lg:text-left">
+          <!-- Availability Pill -->
+          <div
+            class="mb-6 inline-flex animate-fade-in items-center gap-2 rounded-full border border-brand-200/60 bg-brand-50/80 px-4 py-1.5 text-sm font-medium text-brand-700 backdrop-blur-sm dark:border-brand-800/40 dark:bg-brand-950/40 dark:text-brand-300"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex h-2 w-2 rounded-full bg-brand-500"
+              ></span>
+            </span>
+            {t('hero.badge')}
+          </div>
+
+          <!-- Main Heading -->
+          <h1
+            class="mb-6 animate-fade-in-up text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+          >
+            <span class="text-surface-900 dark:text-white"
+              >{t('hero.greeting')}</span
+            >
+            <span class="gradient-text">{t('hero.name')}</span>
+          </h1>
+
+          <!-- Hero Description -->
+          <p
+            class="stagger-2 mb-8 max-w-2xl animate-fade-in-up text-lg leading-relaxed text-surface-600 dark:text-surface-300"
+          >
+            {t('hero.description')}
+          </p>
+
+          <!-- CTA Buttons -->
+          <div
+            class="stagger-3 flex animate-fade-in-up flex-wrap justify-center gap-3 lg:justify-start"
+          >
+            <a
+              href="#proyectos"
+              class="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-500/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:bg-brand-500 dark:hover:bg-brand-600"
+            >
+              {t('hero.cta.projects')}
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"></path>
+              </svg>
+            </a>
+            <a
+              href="https://github.com/chomusuke-mk"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl border border-surface-200 bg-white px-6 py-3 text-sm font-semibold text-surface-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-surface-300 hover:bg-surface-50 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-200 dark:hover:border-surface-600 dark:hover:bg-surface-700"
+            >
+              <svg
+                class="h-4 w-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              {t('hero.cta.github')}
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Avatar -->
+        <div class="stagger-2 relative shrink-0 animate-fade-in">
+          <div
+            class="absolute -inset-4 rounded-full bg-gradient-to-br from-brand-400/20 via-purple-400/20 to-brand-500/20 blur-2xl dark:from-brand-500/15 dark:via-purple-500/15 dark:to-brand-600/15"
+            aria-hidden="true"
+          >
+          </div>
+          <div
+            class="relative h-40 w-40 animate-float rounded-full bg-gradient-to-br from-brand-500 via-purple-500 to-brand-400 p-1 shadow-2xl shadow-brand-500/20 sm:h-48 sm:w-48 lg:h-56 lg:w-56"
+          >
+            <img
+              src="/icons/avatar.png"
+              alt={t('hero.avatarAlt')}
+              class="h-full w-full rounded-full bg-surface-100 object-cover dark:bg-surface-800"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section (Bento Grid) -->
+  <section
+    id="proyectos"
+    class="scroll-mt-20 py-16 sm:py-20"
+    aria-labelledby="projects-heading"
+  >
+    <div class="section-container">
+      <!-- Section Header -->
+      <div class="mb-12 max-w-2xl">
+        <div
+          class="mb-3 inline-flex items-center gap-2 rounded-full border border-brand-200/60 bg-brand-50/80 px-3 py-1 text-xs font-medium text-brand-700 dark:border-brand-800/40 dark:bg-brand-950/40 dark:text-brand-300"
+        >
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
+            ></path>
+          </svg>
+          {t('projects.badge')}
+        </div>
+        <h2
+          id="projects-heading"
+          class="mb-4 text-3xl font-bold tracking-tight text-surface-900 dark:text-white sm:text-4xl"
+        >
+          {t('projects.title.prefix')}<span class="gradient-text"
+            >{t('projects.title.highlight')}</span
+          >
+        </h2>
+        <p class="text-surface-600 dark:text-surface-400">
+          {t('projects.subtitle')}
+        </p>
+      </div>
+
+      <!-- Bento Showcase 1: Flagship Vidra Showcase -->
+      <div class="mb-10">
+        <VidraShowcase lang={lang} />
+      </div>
+
+      <!-- Bento Grid: Ecosystem Components & Distribution Repositories -->
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          otherProjects.map((project, i) => (
+            <ProjectCard project={project} index={i + 1} lang={lang} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <AboutMe lang={lang} />
+
+  <!-- Installation Section -->
+  <section
+    id="instalar"
+    class="scroll-mt-20 py-16 sm:py-20"
+    aria-labelledby="install-heading"
+  >
+    <div class="section-container">
+      <div class="mb-12 max-w-2xl">
+        <div
+          class="mb-3 inline-flex items-center gap-2 rounded-full border border-brand-200/60 bg-brand-50/80 px-3 py-1 text-xs font-medium text-brand-700 dark:border-brand-800/40 dark:bg-brand-950/40 dark:text-brand-300"
+        >
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+            ></path>
+          </svg>
+          {t('install.badge')}
+        </div>
+        <h2
+          id="install-heading"
+          class="mb-4 text-3xl font-bold tracking-tight text-surface-900 dark:text-white sm:text-4xl"
+        >
+          {t('install.title.prefix')}<span class="gradient-text"
+            >{t('install.title.highlight')}</span
+          >
+        </h2>
+        <p class="text-surface-600 dark:text-surface-400">
+          {t('install.subtitle')}
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Windows -->
+        <div class="glass-card p-6">
+          <div class="mb-4 flex items-center gap-3">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900/40"
+            >
+              <svg
+                class="h-5 w-5 text-blue-600 dark:text-blue-400"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-surface-900 dark:text-white">
+                Windows
+              </h3>
+              <p class="text-xs text-surface-500 dark:text-surface-400">
+                {t('install.windows.desc')}
+              </p>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <a
+              href="https://github.com/chomusuke-mk/vidra/releases/latest"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-lg border border-surface-200 bg-white px-3 py-2 text-sm text-surface-700 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-300 dark:hover:border-brand-700 dark:hover:bg-brand-950/30"
+            >
+              <svg
+                class="h-4 w-4 text-surface-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                ></path></svg
+              >
+              GitHub Releases
+            </a>
+            <a
+              href="https://community.chocolatey.org/packages/vidra"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-lg border border-surface-200 bg-white px-3 py-2 text-sm text-surface-700 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-300 dark:hover:border-brand-700 dark:hover:bg-brand-950/30"
+            >
+              <svg
+                class="h-4 w-4 text-surface-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+                ></path></svg
+              >
+              Chocolatey
+            </a>
+          </div>
+        </div>
+
+        <!-- Linux -->
+        <div class="glass-card p-6">
+          <div class="mb-4 flex items-center gap-3">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/40"
+            >
+              <svg
+                class="h-5 w-5 text-amber-600 dark:text-amber-400"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.368 1.884 1.43.665.049 1.27-.243 1.726-.721.436.024.849-.154 1.18-.433.27-.229.488-.523.695-.819.654-.94 1.067-2.109 1.634-2.109.45 0 .76-.267.76-.591 0-.149-.051-.253-.093-.37l-.003-.008c-.107-.285-.2-.54-.2-.866 0-.262.106-.48.2-.662.104-.206.223-.392.346-.562.43-.593.782-1.06.782-1.757 0-.6-.176-.89-.467-1.136-.291-.246-.686-.394-1.063-.482-.282-.066-.615-.13-.801-.28-.247-.2-.285-.6-.235-1.026.043-.375.118-.769.118-1.14 0-2.627-1.473-5.158-3.27-6.544C14.932.393 13.615 0 12.504 0z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-surface-900 dark:text-white">Linux</h3>
+              <p class="text-xs text-surface-500 dark:text-surface-400">
+                {t('install.linux.desc')}
+              </p>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <a
+              href="https://github.com/chomusuke-mk/vidra/releases/latest"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-lg border border-surface-200 bg-white px-3 py-2 text-sm text-surface-700 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-300 dark:hover:border-brand-700 dark:hover:bg-brand-950/30"
+            >
+              <svg
+                class="h-4 w-4 text-surface-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                ></path></svg
+              >
+              AppImage / .deb
+            </a>
+            <a
+              href="https://apt.chomusuke.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-lg border border-surface-200 bg-white px-3 py-2 text-sm text-surface-700 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-300 dark:hover:border-brand-700 dark:hover:bg-brand-950/30"
+            >
+              <svg
+                class="h-4 w-4 text-surface-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+                ></path></svg
+              >
+              APT Repository
+            </a>
+            <a
+              href="https://snapcraft.io/vidra"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-lg border border-surface-200 bg-white px-3 py-2 text-sm text-surface-700 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-300 dark:hover:border-brand-700 dark:hover:bg-brand-950/30"
+            >
+              <svg
+                class="h-4 w-4 text-surface-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+                ></path></svg
+              >
+              Snap Store
+            </a>
+          </div>
+        </div>
+
+        <!-- Android -->
+        <div class="glass-card p-6">
+          <div class="mb-4 flex items-center gap-3">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/40"
+            >
+              <svg
+                class="h-5 w-5 text-green-600 dark:text-green-400"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M17.523 15.3414c-.5615 0-1.0168.4554-1.0168 1.0168s.4554 1.0168 1.0168 1.0168c.5615 0 1.0168-.4554 1.0168-1.0168s-.4554-1.0168-1.0168-1.0168m-11.046 0c-.5615 0-1.0168.4554-1.0168 1.0168s.4554 1.0168 1.0168 1.0168c.5615 0 1.0168-.4554 1.0168-1.0168s-.4554-1.0168-1.0168-1.0168m11.4045-6.02l1.9348-3.3517a.414.414 0 00-.1507-.5655.414.414 0 00-.5655.1507l-1.9579 3.3918C15.552 8.3285 13.8432 7.924 12 7.924s-3.552.4045-5.1421.8726L4.9 5.405a.414.414 0 00-.5655-.1507.414.414 0 00-.1507.5655L6.119 9.1714C2.4585 11.1851 0 15.2 0 19.8h24c0-4.6-2.4585-8.6149-6.119-10.478"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-surface-900 dark:text-white">
+                Android
+              </h3>
+              <p class="text-xs text-surface-500 dark:text-surface-400">
+                {t('install.android.desc')}
+              </p>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <a
+              href="https://github.com/chomusuke-mk/vidra/releases/latest"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-lg border border-surface-200 bg-white px-3 py-2 text-sm text-surface-700 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-300 dark:hover:border-brand-700 dark:hover:bg-brand-950/30"
+            >
+              <svg
+                class="h-4 w-4 text-surface-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                ></path></svg
+              >
+              Direct APK
+            </a>
+            <a
+              href="https://fdroid.chomusuke.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-lg border border-surface-200 bg-white px-3 py-2 text-sm text-surface-700 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-300 dark:hover:border-brand-700 dark:hover:bg-brand-950/30"
+            >
+              <svg
+                class="h-4 w-4 text-surface-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+                ></path></svg
+              >
+              F-Droid Repository
+            </a>
+            <a
+              href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/chomusuke-mk/vidra"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 rounded-lg border border-surface-200 bg-white px-3 py-2 text-sm text-surface-700 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-300 dark:hover:border-brand-700 dark:hover:bg-brand-950/30"
+            >
+              <svg
+                class="h-4 w-4 text-surface-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+                ></path></svg
+              >
+              Obtainium
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact/CTA Section -->
+  <section class="py-16 sm:py-20" aria-labelledby="contact-heading">
+    <div class="section-container">
+      <div
+        class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-purple-600 to-brand-700 p-8 text-center shadow-2xl shadow-brand-500/20 sm:p-12 lg:p-16"
+      >
+        <!-- Background Pattern -->
+        <div
+          class="pointer-events-none absolute inset-0 opacity-10"
+          aria-hidden="true"
+        >
+          <div
+            class="absolute -left-20 -top-20 h-60 w-60 rounded-full bg-white/20 blur-2xl"
+          >
+          </div>
+          <div
+            class="absolute -bottom-20 -right-20 h-60 w-60 rounded-full bg-white/20 blur-2xl"
+          >
+          </div>
+        </div>
+
+        <div class="relative">
+          <h2
+            id="contact-heading"
+            class="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl"
+          >
+            {t('cta.title')}
+          </h2>
+          <p class="mx-auto mb-8 max-w-xl text-brand-100">
+            {t('cta.description')}
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="https://github.com/chomusuke-mk"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-brand-700 shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-600"
+            >
+              <svg
+                class="h-4 w-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              {t('cta.github')}
+            </a>
+            <a
+              href="https://www.buymeacoffee.com/chomusuke"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-600"
+            >
+              {t('cta.donate')}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

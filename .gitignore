@@ -1,0 +1,7 @@
+node_modules/
+/.agents
+dist
+/temp
+.astro/
+.idea/
+.DS_Store

@@ -1,0 +1,415 @@
+---
+import { useTranslations, type Lang } from '@i18n/utils';
+import TechBadge from './TechBadge.astro';
+
+export interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+
+const aptCommand = `wget -qO- https://apt.chomusuke.dev/public.key | sudo tee /etc/apt/keyrings/chomusuke.asc > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/chomusuke.asc] https://apt.chomusuke.dev/ stable main" | sudo tee /etc/apt/sources.list.d/chomusuke.list
+sudo apt update && sudo apt install vidra`;
+---
+
+<article
+  class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500/20 via-purple-500/20 to-indigo-500/20 p-0.5 shadow-2xl shadow-brand-500/10 backdrop-blur-xl"
+>
+  <!-- Inner Card Canvas -->
+  <div
+    class="rounded-[23px] bg-surface-900/90 p-6 text-white backdrop-blur-2xl dark:bg-surface-950/95 sm:p-8 lg:p-10"
+  >
+    <!-- Top Bar: Badge & Live Status -->
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div
+        class="inline-flex items-center gap-2 rounded-full border border-brand-400/40 bg-brand-500/20 px-3.5 py-1.5 text-xs font-bold text-brand-300 backdrop-blur-md"
+      >
+        <div class="relative flex h-2 w-2" aria-hidden="true">
+          <div
+            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"
+          >
+          </div>
+          <div class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500">
+          </div>
+        </div>
+        <span>✨ {t('vidra.flagshipBadge')}</span>
+      </div>
+
+      <div class="flex items-center gap-2 text-xs font-medium text-surface-400">
+        <span
+          class="rounded-md border border-surface-700 bg-surface-800/80 px-2.5 py-1"
+          >OTA Updates</span
+        >
+        <span
+          class="rounded-md border border-surface-700 bg-surface-800/80 px-2.5 py-1"
+          >0 Telemetry</span
+        >
+        <span
+          class="rounded-md border border-surface-700 bg-surface-800/80 px-2.5 py-1"
+          >SHA2 &amp; GPG Verified</span
+        >
+      </div>
+    </div>
+
+    <!-- Title & Hero Description -->
+    <div class="grid gap-8 lg:grid-cols-12 lg:items-center">
+      <div class="lg:col-span-7">
+        <h2
+          class="mb-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl"
+        >
+          Vidra
+        </h2>
+        <p class="mb-4 text-lg font-medium text-brand-300">
+          {t('vidra.tagline')}
+        </p>
+        <p class="mb-6 leading-relaxed text-surface-300">
+          {t('vidra.description')}
+        </p>
+
+        <!-- Tech Pills -->
+        <div class="mb-8 flex flex-wrap gap-2">
+          {
+            [
+              'Flutter',
+              'Dart',
+              'Python 3.14',
+              'yt-dlp',
+              'FFmpeg n8.1.2',
+              'QuickJS',
+              'serious_python',
+              'Clean Architecture',
+              'REST API',
+              'SSE',
+            ].map((tech) => <TechBadge name={tech} />)
+          }
+        </div>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href="https://github.com/chomusuke-mk/vidra/releases/latest"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-all hover:scale-105 hover:shadow-xl hover:shadow-brand-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+          >
+            <svg
+              class="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+              ></path>
+            </svg>
+            {t('vidra.cta.download')}
+          </a>
+          <a
+            href="https://github.com/chomusuke-mk/vidra"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-xl border border-surface-700 bg-surface-800/80 px-5 py-3 text-sm font-semibold text-surface-200 transition-all hover:border-surface-600 hover:bg-surface-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+          >
+            <svg
+              class="h-4 w-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"></path>
+            </svg>
+            {t('vidra.cta.github')}
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform Badges Matrix -->
+      <div class="lg:col-span-5">
+        <div
+          class="rounded-2xl border border-surface-700/60 bg-surface-950/60 p-5 shadow-inner"
+        >
+          <h3
+            class="mb-4 text-xs font-semibold uppercase tracking-wider text-surface-400"
+          >
+            {t('vidra.platforms.title')}
+          </h3>
+          <div class="grid grid-cols-2 gap-3">
+            <!-- Windows -->
+            <div
+              class="flex items-center gap-3 rounded-xl border border-surface-800 bg-surface-900/80 p-3 transition-colors hover:border-brand-500/50"
+            >
+              <div
+                class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400"
+              >
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"
+                  ><path
+                    d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"
+                  ></path></svg
+                >
+              </div>
+              <div>
+                <span class="block text-sm font-semibold text-white"
+                  >{t('vidra.platforms.windows')}</span
+                >
+                <span class="block text-[11px] text-surface-400"
+                  >.exe &amp; Chocolatey</span
+                >
+              </div>
+            </div>
+
+            <!-- Linux -->
+            <div
+              class="flex items-center gap-3 rounded-xl border border-surface-800 bg-surface-900/80 p-3 transition-colors hover:border-brand-500/50"
+            >
+              <div
+                class="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400"
+              >
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"
+                  ><path
+                    d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.368 1.884 1.43.665.049 1.27-.243 1.726-.721.436.024.849-.154 1.18-.433.27-.229.488-.523.695-.819.654-.94 1.067-2.109 1.634-2.109.45 0 .76-.267.76-.591 0-.149-.051-.253-.093-.37l-.003-.008c-.107-.285-.2-.54-.2-.866 0-.262.106-.48.2-.662.104-.206.223-.392.346-.562.43-.593.782-1.06.782-1.757 0-.6-.176-.89-.467-1.136-.291-.246-.686-.394-1.063-.482-.282-.066-.615-.13-.801-.28-.247-.2-.285-.6-.235-1.026.043-.375.118-.769.118-1.14 0-2.627-1.473-5.158-3.27-6.544C14.932.393 13.615 0 12.504 0z"
+                  ></path></svg
+                >
+              </div>
+              <div>
+                <span class="block text-sm font-semibold text-white"
+                  >{t('vidra.platforms.linux')}</span
+                >
+                <span class="block text-[11px] text-surface-400"
+                  >AppImage, APT &amp; Snap</span
+                >
+              </div>
+            </div>
+
+            <!-- Android -->
+            <div
+              class="flex items-center gap-3 rounded-xl border border-surface-800 bg-surface-900/80 p-3 transition-colors hover:border-brand-500/50"
+            >
+              <div
+                class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400"
+              >
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"
+                  ><path
+                    d="M17.523 15.3414c-.5615 0-1.0168.4554-1.0168 1.0168s.4554 1.0168 1.0168 1.0168c.5615 0 1.0168-.4554 1.0168-1.0168s-.4554-1.0168-1.0168-1.0168m-11.046 0c-.5615 0-1.0168.4554-1.0168 1.0168s.4554 1.0168 1.0168 1.0168c.5615 0 1.0168-.4554 1.0168-1.0168s-.4554-1.0168-1.0168-1.0168m11.4045-6.02l1.9348-3.3517a.414.414 0 00-.1507-.5655.414.414 0 00-.5655.1507l-1.9579 3.3918C15.552 8.3285 13.8432 7.924 12 7.924s-3.552.4045-5.1421.8726L4.9 5.405a.414.414 0 00-.5655-.1507.414.414 0 00-.1507.5655L6.119 9.1714C2.4585 11.1851 0 15.2 0 19.8h24c0-4.6-2.4585-8.6149-6.119-10.478"
+                  ></path></svg
+                >
+              </div>
+              <div>
+                <span class="block text-sm font-semibold text-white"
+                  >{t('vidra.platforms.android')}</span
+                >
+                <span class="block text-[11px] text-surface-400"
+                  >APK &amp; F-Droid</span
+                >
+              </div>
+            </div>
+
+            <!-- macOS -->
+            <div
+              class="flex items-center gap-3 rounded-xl border border-surface-800/80 bg-surface-900/40 p-3 opacity-60"
+            >
+              <div
+                class="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-500/20 text-purple-300"
+              >
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"
+                  ><path
+                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.32c.64-.78 1.08-1.85.96-2.92-.93.04-2.06.62-2.73 1.4-.59.69-1.11 1.79-.97 2.85 1.04.08 2.1-.55 2.74-1.33z"
+                  ></path></svg
+                >
+              </div>
+              <div>
+                <span class="block text-sm font-semibold text-white"
+                  >{t('vidra.platforms.macos')}</span
+                >
+                <span
+                  class="inline-block rounded bg-purple-500/20 px-1.5 py-0.5 text-[10px] font-semibold text-purple-300"
+                  >{t('vidra.platforms.comingSoon')}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Architectural Multi-Tier Blueprint -->
+    <div class="mt-10 border-t border-surface-800/80 pt-8">
+      <h3
+        class="mb-6 text-center text-sm font-bold uppercase tracking-wider text-surface-300 sm:text-base"
+      >
+        ⚙️ {t('vidra.arch.title')}
+      </h3>
+      <div class="grid gap-4 md:grid-cols-3">
+        <!-- Tier 1: UI -->
+        <div
+          class="rounded-2xl border border-brand-500/30 bg-gradient-to-b from-brand-950/40 to-surface-900/60 p-5 backdrop-blur-md"
+        >
+          <div class="mb-2 flex items-center justify-between">
+            <span
+              class="text-xs font-bold uppercase tracking-wider text-brand-400"
+              >Tier 1 &middot; UI Layer</span
+            >
+            <span
+              class="rounded bg-brand-500/20 px-2 py-0.5 text-[10px] font-semibold text-brand-300"
+              >Flutter</span
+            >
+          </div>
+          <h4 class="text-base font-bold text-white">
+            {t('vidra.arch.flutter')}
+          </h4>
+          <p class="mt-1 text-xs leading-relaxed text-surface-300">
+            {t('vidra.arch.flutterDesc')}
+          </p>
+        </div>
+
+        <!-- Tier 2: Backend -->
+        <div
+          class="rounded-2xl border border-purple-500/30 bg-gradient-to-b from-purple-950/40 to-surface-900/60 p-5 backdrop-blur-md"
+        >
+          <div class="mb-2 flex items-center justify-between">
+            <span
+              class="text-xs font-bold uppercase tracking-wider text-purple-400"
+              >Tier 2 &middot; Engine Core</span
+            >
+            <span
+              class="rounded bg-purple-500/20 px-2 py-0.5 text-[10px] font-semibold text-purple-300"
+              >Python 3.14</span
+            >
+          </div>
+          <h4 class="text-base font-bold text-white">
+            {t('vidra.arch.backend')}
+          </h4>
+          <p class="mt-1 text-xs leading-relaxed text-surface-300">
+            {t('vidra.arch.backendDesc')}
+          </p>
+        </div>
+
+        <!-- Tier 3: Toolchains -->
+        <div
+          class="rounded-2xl border border-indigo-500/30 bg-gradient-to-b from-indigo-950/40 to-surface-900/60 p-5 backdrop-blur-md"
+        >
+          <div class="mb-2 flex items-center justify-between">
+            <span
+              class="text-xs font-bold uppercase tracking-wider text-indigo-400"
+              >Tier 3 &middot; Native Binaries</span
+            >
+            <span
+              class="rounded bg-indigo-500/20 px-2 py-0.5 text-[10px] font-semibold text-indigo-300"
+              >C / C++</span
+            >
+          </div>
+          <h4 class="text-base font-bold text-white">
+            {t('vidra.arch.ytdlp')} + {t('vidra.arch.ffmpeg')}
+          </h4>
+          <p class="mt-1 text-xs leading-relaxed text-surface-300">
+            {t('vidra.arch.ffmpegDesc')} &amp; {t('vidra.arch.quickjsDesc')}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive APT Snippet Container -->
+    <div
+      class="mt-8 rounded-2xl border border-surface-800/80 bg-surface-950/80 p-5"
+    >
+      <div class="mb-3 flex items-center justify-between">
+        <span
+          class="flex items-center gap-2 text-xs font-bold text-surface-300"
+        >
+          <svg
+            class="h-4 w-4 text-emerald-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"
+            ></path>
+          </svg>
+          {t('vidra.aptSnippet.title')}
+        </span>
+        <button
+          id="copy-apt-btn"
+          type="button"
+          class="inline-flex items-center gap-1.5 rounded-lg border border-surface-700 bg-surface-800 px-3 py-1 text-xs font-medium text-surface-200 transition-all hover:bg-surface-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-400"
+          data-copy={aptCommand}
+          data-copied={t('vidra.aptSnippet.copied')}
+          aria-label={lang === 'en'
+            ? 'Copy APT installation commands'
+            : 'Copiar comandos de instalación APT'}
+        >
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25c0-.621.504-1.125 1.125-1.125h5.25"
+            ></path>
+          </svg>
+          <span id="copy-apt-label">{t('vidra.aptSnippet.copy')}</span>
+        </button>
+      </div>
+      <pre
+        class="overflow-x-auto rounded-xl bg-surface-900/90 p-4 font-mono text-xs leading-relaxed text-surface-200"><code><span class="text-surface-500">{lang === 'en' ? '# 1. Download security key' : '# 1. Descargar clave de seguridad'}</span>
+<span class="text-emerald-400">wget</span> -qO- https://apt.chomusuke.dev/public.key | <span class="text-emerald-400">sudo</span> tee /etc/apt/keyrings/chomusuke.asc &gt; /dev/null
+
+<span class="text-surface-500">{lang === 'en' ? '# 2. Add repository' : '# 2. Agregar repositorio'}</span>
+<span class="text-emerald-400">echo</span> <span class="text-amber-300">"deb [signed-by=/etc/apt/keyrings/chomusuke.asc] https://apt.chomusuke.dev/ stable main"</span> | <span class="text-emerald-400">sudo</span> tee /etc/apt/sources.list.d/chomusuke.list
+
+<span class="text-surface-500">{lang === 'en' ? '# 3. Update &amp; Install' : '# 3. Actualizar e instalar'}</span>
+<span class="text-emerald-400">sudo</span> apt update &amp;&amp; <span class="text-emerald-400">sudo</span> apt install vidra</code></pre>
+    </div>
+  </div>
+</article>
+
+<script>
+  function initCopyButton() {
+    const copyBtn = document.getElementById('copy-apt-btn');
+    const copyLabel = document.getElementById('copy-apt-label');
+    if (copyBtn && copyLabel) {
+      copyBtn.addEventListener('click', async () => {
+        const textToCopy = copyBtn.getAttribute('data-copy');
+        const copiedText = copyBtn.getAttribute('data-copied') || 'Copied!';
+        if (textToCopy && navigator.clipboard) {
+          try {
+            await navigator.clipboard.writeText(textToCopy);
+            const originalText = copyLabel.textContent;
+            copyLabel.textContent = copiedText;
+            copyBtn.classList.add('border-emerald-500', 'text-emerald-400');
+            setTimeout(() => {
+              copyLabel.textContent = originalText;
+              copyBtn.classList.remove(
+                'border-emerald-500',
+                'text-emerald-400'
+              );
+            }, 2000);
+          } catch (e) {
+            console.error('Failed to copy', e);
+          }
+        }
+      });
+    }
+  }
+
+  if (document.readyState !== 'loading') {
+    initCopyButton();
+  } else {
+    document.addEventListener('DOMContentLoaded', initCopyButton);
+  }
+</script>

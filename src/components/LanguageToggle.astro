@@ -1,0 +1,46 @@
+---
+import { getLangFromUrl, languages, type Lang } from '@i18n/utils';
+
+export interface Props {
+  currentLang?: Lang;
+}
+
+const url = Astro.url;
+const lang = Astro.props.currentLang || getLangFromUrl(url);
+
+const targetLang: Lang = lang === 'es' ? 'en' : 'es';
+
+let targetPath = '/';
+if (targetLang === 'en') {
+  targetPath = url.pathname === '/' ? '/en' : `/en${url.pathname}`;
+} else {
+  targetPath = url.pathname.replace(/^\/en(?=\/|$)/, '') || '/';
+}
+if (url.hash) {
+  targetPath += url.hash;
+}
+---
+
+<a
+  href={targetPath}
+  class="inline-flex items-center gap-1.5 rounded-lg border border-surface-200/80 bg-surface-100/80 px-2.5 py-1.5 text-xs font-semibold text-surface-700 transition-all hover:border-brand-400 hover:bg-brand-50 hover:text-brand-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-surface-700/80 dark:bg-surface-800/80 dark:text-surface-300 dark:hover:border-brand-500 dark:hover:bg-brand-950/40 dark:hover:text-brand-400"
+  aria-label={lang === 'en'
+    ? `Switch language to ${languages[targetLang]}`
+    : `Cambiar idioma a ${languages[targetLang]}`}
+>
+  <svg
+    class="h-3.5 w-3.5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentColor"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M12 21a9 9 0 100-18 9 9 0 000 18zM2.25 12h19.5m-3.18-6c-1.3 3.66-1.3 8.34 0 12M5.43 6c1.3 3.66 1.3 8.34 0 12"
+    ></path>
+  </svg>
+  <span class="uppercase tracking-wider">{targetLang}</span>
+</a>

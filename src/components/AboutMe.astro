@@ -1,0 +1,195 @@
+---
+import { useTranslations, type Lang } from '@i18n/utils';
+import TechBadge from './TechBadge.astro';
+
+export interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+
+const skills = [
+  {
+    key: 'react',
+    titleKey: 'about.skills.react.title',
+    descKey: 'about.skills.react.desc',
+    iconBg: 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Astro'],
+    svg: `<path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />`,
+  },
+  {
+    key: 'postgres',
+    titleKey: 'about.skills.postgres.title',
+    descKey: 'about.skills.postgres.desc',
+    iconBg: 'bg-blue-500/10 border-blue-500/20 text-blue-400',
+    tags: ['Postgres', 'SQL', 'Relational DB', 'ORM'],
+    svg: `<path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />`,
+  },
+  {
+    key: 'mongodb',
+    titleKey: 'about.skills.mongodb.title',
+    descKey: 'about.skills.mongodb.desc',
+    iconBg: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400',
+    tags: ['MongoDB', 'NoSQL', 'Document Store', 'JSON'],
+    svg: `<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />`,
+  },
+  {
+    key: 'python',
+    titleKey: 'about.skills.python.title',
+    descKey: 'about.skills.python.desc',
+    iconBg: 'bg-amber-500/10 border-amber-500/20 text-amber-400',
+    tags: ['Python', 'Flask', 'REST API', 'serious_python'],
+    svg: `<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />`,
+  },
+  {
+    key: 'ai',
+    titleKey: 'about.skills.ai.title',
+    descKey: 'about.skills.ai.desc',
+    iconBg: 'bg-purple-500/10 border-purple-500/20 text-purple-400',
+    tags: ['AI Development', 'LLMs', 'Agents', 'Automation'],
+    svg: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />`,
+  },
+  {
+    key: 'os',
+    titleKey: 'about.skills.os.title',
+    descKey: 'about.skills.os.desc',
+    iconBg: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400',
+    tags: ['Open Source', 'Privacy', 'GPG / Keystore', 'CI/CD'],
+    svg: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />`,
+  },
+] as const;
+---
+
+<section
+  id="sobre-mi"
+  class="scroll-mt-20 py-16 sm:py-20"
+  aria-labelledby="about-heading"
+>
+  <div class="section-container">
+    <!-- Section Header -->
+    <div class="mb-12 max-w-3xl">
+      <h2
+        id="about-heading"
+        class="mb-4 text-3xl font-bold tracking-tight text-surface-900 dark:text-white sm:text-4xl"
+      >
+        {t('about.heading.prefix')}<span class="gradient-text"
+          >{t('about.heading.highlight')}</span
+        >
+      </h2>
+      <p
+        class="text-base font-semibold text-brand-600 dark:text-brand-400 sm:text-lg"
+      >
+        {t('about.subtitle')}
+      </p>
+    </div>
+
+    <!-- Main Grid: Narrative (Left) + Stats (Right) -->
+    <div class="mb-14 grid gap-8 lg:grid-cols-12">
+      <!-- Bio Narrative Card -->
+      <div class="glass-card p-6 sm:p-8 lg:col-span-8">
+        <div
+          class="space-y-4 leading-relaxed text-surface-600 dark:text-surface-300"
+        >
+          <p class="text-lg font-medium text-surface-900 dark:text-white">
+            {t('about.bio1')}
+          </p>
+          <p>
+            {t('about.bio2')}
+          </p>
+          <p>
+            {t('about.bio3')}
+          </p>
+        </div>
+      </div>
+
+      <!-- Stat Counters Grid -->
+      <div class="grid grid-cols-2 gap-4 lg:col-span-4">
+        <div
+          class="glass-card flex flex-col items-center justify-center p-5 text-center transition-all hover:scale-105"
+        >
+          <span class="gradient-text text-4xl font-black">6+</span>
+          <span
+            class="mt-2 text-xs font-semibold uppercase tracking-wider text-surface-500 dark:text-surface-400"
+            >{t('stats.projects')}</span
+          >
+        </div>
+        <div
+          class="glass-card flex flex-col items-center justify-center p-5 text-center transition-all hover:scale-105"
+        >
+          <span class="gradient-text text-4xl font-black">4</span>
+          <span
+            class="mt-2 text-xs font-semibold uppercase tracking-wider text-surface-500 dark:text-surface-400"
+            >{t('stats.platforms')}</span
+          >
+        </div>
+        <div
+          class="glass-card flex flex-col items-center justify-center p-5 text-center transition-all hover:scale-105"
+        >
+          <span class="gradient-text text-4xl font-black">100%</span>
+          <span
+            class="mt-2 text-xs font-semibold uppercase tracking-wider text-surface-500 dark:text-surface-400"
+            >{t('stats.opensource')}</span
+          >
+        </div>
+        <div
+          class="glass-card flex flex-col items-center justify-center p-5 text-center transition-all hover:scale-105"
+        >
+          <span class="gradient-text text-4xl font-black">0</span>
+          <span
+            class="mt-2 text-xs font-semibold uppercase tracking-wider text-surface-500 dark:text-surface-400"
+            >{t('stats.telemetry')}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Explicit 6 Pillars of Expertise Grid -->
+    <div>
+      <h3
+        class="mb-6 text-xl font-bold tracking-tight text-surface-900 dark:text-white"
+      >
+        🛠️ {t('about.skills.title')}
+      </h3>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          skills.map((skill) => (
+            <div class="glass-card-hover flex flex-col justify-between p-6">
+              <div>
+                <div class="mb-4 flex items-center gap-3">
+                  <div
+                    class:list={[
+                      'flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border',
+                      skill.iconBg,
+                    ]}
+                  >
+                    <svg
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.75"
+                      stroke="currentColor"
+                      set:html={skill.svg}
+                    />
+                  </div>
+                  <h4 class="text-base font-bold text-surface-900 dark:text-white">
+                    {t(skill.titleKey)}
+                  </h4>
+                </div>
+                <p class="mb-5 text-sm leading-relaxed text-surface-600 dark:text-surface-300">
+                  {t(skill.descKey)}
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 border-t border-surface-100 pt-4 dark:border-surface-800">
+                {skill.tags.map((tag) => (
+                  <TechBadge name={tag} />
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
